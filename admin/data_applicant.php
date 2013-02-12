@@ -1,6 +1,23 @@
 <?php 
-include "f_connect.php";
 if($_SESSION['level'] == "admin"){
+	$search = "";
+	$searchOptions = $_POST['pilihan'];
+	$qWord = $_POST['data_cari'];
+	$searchMode = false;
+	if(isset($_POST['search']) && $qWord != "")
+	{
+		$search = $qWord;
+		$searchMode = true;
+	}
+	if(isset($_POST['search']) && $qWord === "")
+	{
+		echo "Please, fill the search box";
+	}
+	if(isset($_POST['clear']))
+	{
+		$searchOptions = "clear";
+		$qWord = "";
+	}
 
 ?>
 <p style="font-family:trebuchet MS; color:#006633; font-size:18px; text-decoration:underline; ">DAFTAR APPLICANT</p>
@@ -8,14 +25,16 @@ if($_SESSION['level'] == "admin"){
   
  
  
- <form name="form1" method="POST" action="">
+<form name="form1" method="POST" action="?file=adm_data">
 	Cari: <select name="pilihan" id="pilihan">
-	<option value="no">No Applicant</option>
-	<option value="nama">Nama Applicant</option>
-	<option value="penempatan">Penempatan</option>
+	<option value="no" <?php echo ($searchOptions == "no" ? "selected" : ""); ?>>No Applicant</option>
+	<option value="nama" <?php echo ($searchOptions == "nama" ? "selected" : ""); ?>>Nama Applicant</option>
+	<option value="penempatan" <?php echo ($searchOptions == "penempatan" ? "selected" : ""); ?>>Penempatan</option>
 	</select></tr>
-	<input name="data_cari" type="text" id="data_cari" ></input></td>
-	<input name="search" class="button" type="submit" id="search" value="Searching"></td>
+	<input name="data_cari" type="text" id="data_cari" value="<?php echo $qWord; ?>"></input></td>
+	<input name="search" class="button" type="submit" id="search" value="Searching">
+	<input name="clear" class="button" type="submit" id="clearSearch" value="Clear Search">
+	</td>
 	</table>
 </form>
 
@@ -36,7 +55,24 @@ if($_SESSION['level'] == "admin"){
    </thead>
    <tbody id="tableBody" style="font-family:trebuchet MS;">
   <?php
-		$sql=mysql_query("SELECT * from applicant");
+		$query = "SELECT * from applicant";
+		if($searchOptions == "no")
+		{
+			$query = $query." where no_applicant = '$search'";
+		}
+		if($searchOptions == "nama")
+		{
+			$query = $query." where nama_lengkap LIKE '%$search%'";
+		}
+		if($searchOptions == "penempatan")
+		{
+			$query = $query." where penempatan LIKE '%$search%'";
+		}
+		if($searchOptions == "clear")
+		{
+			$query = "SELECT * from applicant";
+		}		
+		$sql=mysql_query($query);
         if(mysql_num_rows($sql) > 0){
 		  $x = 1;
 		  while($row=mysql_fetch_array($sql)){
