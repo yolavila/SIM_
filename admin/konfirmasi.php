@@ -16,7 +16,7 @@
 <form method="POST" action="?file=konfirm"><table width=98%><tr>
 	<input type="hidden" name="mode" value="add"></input>
 	<tr>
-	<td><input type="text" name="no_applicant" size="30" placeholder="No Applicant"></input><input class="button" type="submit" value="cari">
+	<td><input type="text" name="no_applicant" size="30" placeholder="No Applicant" value="<?php echo $search; ?>"></input><input class="button" type="submit" value="cari">
 </td></tr>
 	  </table></tr>
 </form>
