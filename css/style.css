@@ -1,0 +1,212 @@
+body {
+    background: #ffffff;
+    padding-bottom:3px;
+    margin:0 auto 0 auto;width:100%;
+    margin-bottom:0;
+}
+#header {
+    background:#ADE8E6;
+    width: 100%;
+    height: 150px;
+}
+#logo {
+    float: left;
+    width: auto;
+    height: 120px;
+    padding: 15px 30px 15px 32px;
+}
+.logo {
+    display: block;
+    height: 120px;
+}
+.site_title {
+    font-size: 35px;
+	font-family:"Rockwell";
+    padding: 20px 20px 20px 20px;
+}
+.site_title a {
+    text-decoration: none;	
+    color:black;
+}
+.site_title a:hover {
+    text-decoration: none;
+    color:#FFFFFF;
+}
+.site_slogan {
+    color:black;
+	font-family:"Rockwell";
+    font-size: 20px;
+}
+
+#menu_admin {
+    float : right;
+    padding: 0px 32px 0px 0px;
+}
+#menu_admin input{
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+    background:white;
+    border:1px solid #333;
+    cursor:pointer;
+	color:black;
+    font-size: 16px;
+	font-family:"Comic Sans MS";
+    font-weight:bold;
+	text-align:center;
+    text-decoration:none;
+    vertical-align:top;
+	letter-spacing: 2px;
+}
+#menu_admin input:hover{
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+    background:white;
+    border:1px solid #333;
+    cursor:pointer;
+	color:#ADE8E6;
+    font-size: 16px;
+	font-family:"Comic Sans MS";
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+    vertical-align:top;
+}
+
+#menu_admin1 {
+    clear : both;
+    padding: 0px 32px 0px 0px;
+}
+#menu_admin1 input{
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+    background:white;
+    border:1px solid #333;
+    cursor:pointer;
+	color:black;
+    font-size: 16px;
+	font-family:"Comic Sans MS";
+    font-weight:bold;
+	text-align:center;
+    text-decoration:none;
+    vertical-align:top;
+	letter-spacing: 2px;
+}
+#menu_admin1 input:hover{
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+    background:white;
+    border:1px solid #333;
+    cursor:pointer;
+	color:#ADE8E6;
+    font-size: 16px;
+	font-family:"Comic Sans MS";
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+    vertical-align:top;
+}
+
+.red {
+    color:#800202;
+}
+#container {
+    width: 100%;
+    height: auto;
+}
+
+#container_left {
+    float: left;
+    position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	width: 225px;
+	padding-top: 20px;
+	text-align: left;
+}
+#container_left ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+#container_left li {
+	width: 180px;
+	margin: 0;
+	padding: 0;
+    font-size: 14px;
+	vertical-align: bottom; 
+}
+#sub_menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+#sub_menu li {
+	width: 180px;
+	margin: 0;	
+	color:#CCCCCC;
+	padding-left: 25px;
+	vertical-align: bottom; 
+}
+#sub_menu li:hover {
+	width: 180px;
+	margin: 0;
+	font-style:italic;
+	color:#FFFF33;
+	padding-left: 25px;
+	vertical-align: bottom; 
+}
+#container_left a:link, #container_left a:visited {
+	display: block;
+	padding: 5px 5px 5px 0.5em;
+	color: #265180;
+	text-decoration: none;
+}
+#container_left a:hover {
+	background-color:#40E0D0;
+}
+#container_right {
+    float: right;
+    position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	width: 940px;
+	border: 1px solid #eee;
+	padding-top: 20px;
+	text-align: left;
+}
+#container_right_main {
+    padding: 0px 20px 0px 20px;
+}
+#main {
+	margin-right: auto;
+	margin-left: auto;
+    width: 980px;
+}
+
+
+#main {
+    
+}
+#footer { 
+	clear: both; 	
+	color: #666666; 	
+	padding: 4px;	 
+}
+#welcome {
+    border: 1px solid black; width: 95%; padding-left: 25px;
+	font-family:"trebuchet MS";
+}
+
+#info {
+    border: 1px solid black; width: 95%; padding-left: 25px;
+}
+
+#content {
+font-family:"trebuchet MS";
+}
