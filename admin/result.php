@@ -1,15 +1,22 @@
 <?php
-
-mysql_connect("localhost", "root", "");
-mysql_select_db("sim");
+	$search = "";
+	$qWord = $_POST['no_applicant'];
+	$searchMode = false;
+	if(isset($qWord) && $qWord != "")
+	{
+		$search = $qWord;
+		$searchMode = true;
+	}
+	if(isset($qWord) && $qWord === "")
+	{
+		echo "Please, fill the search box";
+	}
 ?>
-
-
 <h3>Data Result</h3>
-<form method="POST" action="?file=add_jadwal" enctype="multipart/form-data"><table width=98%><tr>
+<form method="POST" action="?file=f_result"><table width=98%><tr>
 	<input type="hidden" name="mode" value="add"></input>
 	<tr>
-	<td><input type="text" name="no_applicant" size="30" placeholder="No Applicant"></input><input class="button" type="submit" value="cari">
+	<td><input type="text" name="no_applicant" size="30" placeholder="No Applicant" value="<?php echo $search; ?>"></input><input class="button" type="submit" value="cari">
 </td></tr>
 	  </table></tr>
 </form>
@@ -28,10 +35,16 @@ mysql_select_db("sim");
    </thead>
    <tbody id="tableBody" style="font-family:trebuchet MS;">
   <?php
-		$sql=mysql_query("SELECT applicant.no_applicant, applicant.nama_lengkap, applicant.penempatan, applicant.posisi, penjadwalan.jadwal
+		$query = "SELECT applicant.no_applicant, applicant.nama_lengkap, applicant.penempatan, applicant.posisi, penjadwalan.jadwal
 FROM applicant
 LEFT JOIN penjadwalan ON applicant.no_applicant = penjadwalan.no_applicant
-WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = 'Hadir'");
+WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = 'Hadir'";
+		$searchQuery = "AND applicant.no_applicant = '$search'";
+		if($searchMode)
+		{
+			$query = $query.$searchQuery;
+		}
+		$sql=mysql_query($query);
         if(mysql_num_rows($sql) > 0){
 		  $x = 1;
 		  while($row=mysql_fetch_array($sql)){
