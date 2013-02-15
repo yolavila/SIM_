@@ -13,7 +13,7 @@ mysql_select_db("sim");
     <br />
   </div>
   <table width="90%" border="0" align="center">
-  <form method="post" action="../skripsi/admin/simpan_jad.php">
+  <form method="post" action="admin/simpan_jad.php">
   <tr>
     <td width="26%">No Applicant</td>
     <td width="74%">:&nbsp;<input type="text" name="no" value=<?php echo $data['no_applicant'] ?>></td>

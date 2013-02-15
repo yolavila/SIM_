@@ -35,16 +35,17 @@
    </thead>
    <tbody id="tableBody" style="font-family:trebuchet MS;">
   <?php
+		include "f_connect.php";
 		$query = "SELECT applicant.no_applicant, applicant.nama_lengkap, applicant.penempatan, applicant.posisi, penjadwalan.jadwal
 FROM applicant
 LEFT JOIN penjadwalan ON applicant.no_applicant = penjadwalan.no_applicant
-WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = 'Hadir'";
+WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = 'Hadir' AND status < 5";
 		$searchQuery = "AND applicant.no_applicant = '$search'";
 		if($searchMode)
 		{
 			$query = $query.$searchQuery;
 		}
-		$sql=mysql_query($query);
+		$sql=mysql_query($query) or die (mysql_query());
         if(mysql_num_rows($sql) > 0){
 		  $x = 1;
 		  while($row=mysql_fetch_array($sql)){
@@ -59,12 +60,12 @@ WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = 'Hadir'";
 					<td style='border:1px solid #CBF3C2; width: 100%;'><center>"?>
 					<select name='konfirm'>
 					<option value=''>Pilih</option>
-					<option value='5' id=Qualified onclick="prosesResult(<?php echo $row[no_applicant]; ?>);">Qualified</option>
-					<option value='6' id="Not Qualified" onclick="document.location='?file=proses_result'">Non Qualified</option>
+					<option value='5' id="Qualified" onclick="prosesResult(<?php echo $row[no_applicant]; ?>,5);">Qualified</option>
+					<option value='6' id="Not Qualified" onclick="prosesResult(<?php echo $row[no_applicant]; ?>,6);">Not Qualified</option>
 					</select>
 					</td>
 		         </tr><?php
-			$x++;
+			$x++; 
 		  }
 		} else {
 		  echo "<tr>
@@ -79,7 +80,7 @@ WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = 'Hadir'";
 
 <script type="text/javascript">
 
-function prosesResult(id){
+function prosesResult(id,k){
 
     var conf = confirm("Anda Yakin Applicant tersebut Qualified?");
 
@@ -88,14 +89,14 @@ function prosesResult(id){
          //alert("OK... you chose to proceed with deletion of "+id);
 		 
 		 $.ajax({
-			url:"admin/result_pros.php?no_applicant="+id,
+			url:"admin/result_pros.php?no_applicant="+id+"&k="+k,
 			type:"GET",
 			success:function(hasil)
 			{
 				if(hasil==1)
 				{
 					//alert("ok");
-					window.location = "http://localhost/skripsi/home.php?file=f_result";
+					window.location = "home.php?file=f_result";
 				}
 				else
 				{

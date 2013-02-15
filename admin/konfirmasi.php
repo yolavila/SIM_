@@ -35,6 +35,7 @@
    </thead>
    <tbody id="tableBody" style="font-family:trebuchet MS;">
   <?php
+		include "f_connect.php";
 		$query = "SELECT applicant.no_applicant, applicant.nama_lengkap, applicant.penempatan, applicant.posisi, penjadwalan.jadwal FROM applicant
 LEFT JOIN penjadwalan ON applicant.no_applicant = penjadwalan.no_applicant
 WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = ''";
@@ -44,7 +45,7 @@ WHERE penjadwalan.jadwal !='0000-00-00' AND konfirmasi = ''";
 			$query = $query.$searchQuery;
 		}
 		//echo $query;
-		$sql=mysql_query($query);
+		$sql=mysql_query($query) or die("Kesalahan : ".mysql_error());
         if(mysql_num_rows($sql) > 0){
 		  $x = 1;
 		  while($row=mysql_fetch_array($sql)){
@@ -95,7 +96,7 @@ function prosesKonfirmasi(id){
 				if(hasil==1)
 				{
 					//alert("ok");
-					window.location = "http://localhost/skripsi/home.php?file=f_result";
+					window.location = "home.php?file=konfirm";
 				}
 				else
 				{
