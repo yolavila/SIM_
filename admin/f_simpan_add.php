@@ -27,11 +27,11 @@ $posisi = $_POST['posisi'];
 $foto = $_POST['image'];
     
   $simpan = mysql_query ("INSERT INTO applicant VALUES ('$noap','$noid','$nama','$alamat','$kota','$tlp','$email','$ttl','$tgl_lahir',
-											'$jk','$status','$agama','$gol','$pend','$penempatan','$posisi','$foto','1')");
-	$jadwal=mysql_query ("INSERT INTO penjadwalan VALUES ('$noap','','')");
+											'$jk','$status','$agama','$gol','$pend','$penempatan','$posisi','$foto','1')") or die("Kesalahan : ".mysql_error());
+	$jadwal=mysql_query ("INSERT INTO penjadwalan VALUES ('$noap','','')") or die("Kesalahan : ".mysql_error());
   
 	if ($simpan && $jadwal){											
-  header('location:../../skripsi/home.php?file=adm_data');
+  header('location:../home.php?file=adm_data');
 }else{
 echo "<font color=red>Data Gagal Disimpan</font>";
 }

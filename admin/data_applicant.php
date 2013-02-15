@@ -55,6 +55,7 @@ if($_SESSION['level'] == "admin"){
    </thead>
    <tbody id="tableBody" style="font-family:trebuchet MS;">
   <?php
+		include "f_connect.php";
 		$query = "SELECT * from applicant";
 		if($searchOptions == "no")
 		{
@@ -72,7 +73,7 @@ if($_SESSION['level'] == "admin"){
 		{
 			$query = "SELECT * from applicant";
 		}		
-		$sql=mysql_query($query);
+		$sql=mysql_query($query) or die(mysql_error());
         if(mysql_num_rows($sql) > 0){
 		  $x = 1;
 		  while($row=mysql_fetch_array($sql)){

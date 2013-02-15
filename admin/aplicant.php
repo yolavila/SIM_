@@ -6,7 +6,7 @@ mysql_select_db("sim");
 ?>
 
 <h3>Data Applicant</h3>
-<form method="POST" action="../skripsi/admin/f_simpan_add.php" enctype="multipart/form-data"><table width=98%><tr>
+<form method="POST" action="admin/f_simpan_add.php" enctype="multipart/form-data"><table width=98%><tr>
 	<input type="hidden" name="mode" value="add"></input>
 	<tr><td>No Applicant</td>	
 	<td>: <input type="text" name="no_applicant" size="30"></input></td></tr>
