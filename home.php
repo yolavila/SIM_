@@ -4,7 +4,7 @@ session_start();
  * @author ADMIN
  * @copyright 2013
  */
-//error_reporting(0);
+error_reporting(0);
 include "f_connect.php";
 if (!$_SESSION['username']){
 	echo "<script language='javascript'>

@@ -13,7 +13,7 @@ $mode = $_POST['mode'];
 
 $noap = $_POST['no_applicant'];
 $nama = $_POST['nama_lengkap'];
-$ttl = $_POST['tempat_lahir'];
+$ttl = ($_POST['tempat_lahir_new'] != "") ? $_POST['tempat_lahir_new'] : $_POST['tempat_lahir'];
 $tgl_lahir = $_POST['thn'].'-'.$_POST['bln'].'-'.$_POST['tgl'];;
 $noid = $_POST['no_identitas'];
 $alamat = $_POST['alamat'];

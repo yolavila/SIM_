@@ -51,17 +51,25 @@ if (!isset($_GET['id_applicant'])){
 	<tr><td>Nama Lengkap</td>
 	<td>: <input type="text" name="nama_lengkap" size="30"></input></td></tr>
 	<tr><td>Tempat Kelahiran</td>
-	<td>: <input type="text" name="tempat_lahir" size="30"></input></td></tr>
+	<!--<td>: <input type="text" name="tempat_lahir" size="30"></input></td></tr>-->
+	<td>: 
+		<div id="newtmplahir" style="display:none;">
+			<input type="text" name="tempat_lahir_new" id="tempat_lahir_new" size="30" value=""></input>
+			<a href="#" onClick="backtodropdown();">cancel</a>
+		</div>
+		<select id="tempat_lahir" onChange="cekTempatLahir();"><option value="0">-- silakan pilih --</option></select>		
+		<img style="display:none;" id="wait-img" src="images/ajax-loader.gif" />
+	</td>
 	<tr><td><label for="jurl">Tanggal Lahir</label></td>
-            <td class="last">:&nbsp;<select name="tgl" id="tgl">
+            <td class="last">:&nbsp;<select name="tgl" id="tgl" onChange="cekDouble();">
 									<option value="">Tanggal</option>
 									<?php
 									for ($tgl=01; $tgl<=31; $tgl++)
 									{
 									echo "<option value=$tgl> $tgl </option>";
 									}
-									?>
-								</select> /
+									?>								
+								</select> <img style="display:none;" id="wait-img-cek" src="images/ajax-loader.gif" /> /
 									<select name="bln" id="bln">
 									<option value="">Bulan</option>
 									<option value="1">Januari</option>
@@ -86,7 +94,9 @@ if (!isset($_GET['id_applicant'])){
 										echo "<option value=$thn> $thn</option>";
 										}
 									?>
-									</select></td></tr>
+									</select>
+									<p id="errortext" style="color:red; display:none;">data dobel. Silakan isi ulang data anda</p>
+								</td></tr>
 	<tr><td><label for="jurl">Jenis Kelamin</label></td>
 	<td>:  <select name=jenis_kelamin>
 		<option value=pria>Pria</option>
@@ -198,7 +208,7 @@ if (!isset($_GET['id_applicant'])){
 	                <tr><td>Tempat Kelahiran</td>
 	                <td>: <input type="text" name="tempat_lahir" size="30" value="<?php echo $row['tempat_lahir']; ?>"></input></td></tr>
 	                <tr><td><label for="jurl">Tanggal Lahir</label></td>
-                            <td class="last">:&nbsp;<select name="tgl" id="tgl">
+                            <td class="last">:&nbsp;<select name="tgl" id="tgl" onChange="cekDouble();">
 									                <option value="">Tanggal</option>
 									                <?php
 									                for ($tgl=01; $tgl<=31; $tgl++)
@@ -392,3 +402,63 @@ elseif(!empty( $_GET['id_applicant']) && $_GET['mode'] == "view")
 }
 ?>
 
+<script type="text/javascript">
+	$(document).ready(function(){		
+		$.ajax({
+			url : "proses.php?mode=tempat",
+			type : "POST",
+			beforeSend : function(){
+				$('#wait-img').show();
+			},
+			success : function(data){
+				$('#tempat_lahir').append(data);
+				$('#wait-img').hide();
+			}
+		});
+	});
+
+	function cekTempatLahir()
+	{
+		if($('#tempat_lahir').val() == 'new')
+		{
+			$('#tempat_lahir').hide();
+			$('#newtmplahir').css('display', 'inline-block');
+		}
+	}
+
+	function backtodropdown()
+	{
+		$('#tempat_lahir').val('0');
+		$('#tempat_lahir').show();
+		$('#tempat_lahir_new').val('');
+		$('#newtmplahir').hide();
+	}
+
+	function resetfield()
+	{
+		$('#tempat_lahir').val('0');
+		$('#tgl').val('0');
+	}
+
+	function cekDouble()
+	{
+		var tmp = $('#tempat_lahir').val();
+		var tgl = $('#tgl').val();
+		$.ajax({
+			url : "proses.php?mode=dobel&tmp="+tmp+"&tgl="+tgl,			
+			type : "GET",
+			beforeSend : function(){
+				$('#wait-img-cek').show();
+				$('#errortext').hide();
+			},
+			success : function(data){				
+				if(!data)
+				{
+					$('#errortext').css('display', 'inline-block');
+					resetfield();
+				}
+				$('#wait-img-cek').hide();
+			}
+		});
+	}
+</script>
