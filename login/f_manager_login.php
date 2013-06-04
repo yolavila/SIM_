@@ -1,3 +1,15 @@
+<?php
+	session_start();
+	include "../f_connect.php";
+	$attr = "manager";
+	$_SESSION['level'] = $attr;
+    $_SESSION['username'] = $attr;
+    $_SESSION['status'] = $attr;
+	$_SESSION['nama'] = $attr;
+	echo "logging in..";
+    echo("<meta http-equiv='refresh' content='0;index.php'>");
+?>
+<!--
 <div id="main">
     <table id="welcome" align="center">
         <td width="100%">
@@ -31,3 +43,4 @@
         </td>
     </table>
 </div>
+-->

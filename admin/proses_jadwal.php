@@ -7,10 +7,15 @@ mysql_select_db("sim");
 		while ($data=mysql_fetch_array($sql)){
   
 ?>
- 
+<script type="text/javascript">
+$(function() {
+$('#tanggal').datepicker({dateFormat:'yy-mm-dd'});
+});
+</script> 
+
   
-  <div align="center"><span class="style1">TAMBAH PENJADWALAN</span><br />
-    <br />
+  <div align="center"><span class="style1">TAMBAH PENJADWALAN</span><br>
+    <br>
   </div>
   <table width="90%" border="0" align="center">
   <form method="post" action="admin/simpan_jad.php">
@@ -32,40 +37,7 @@ mysql_select_db("sim");
   </tr>
   <tr>
 <tr><td><label for="jurl">Tanggal Penjadwalan</label></td>
-            <td class="last">:&nbsp;<select name="tgl" id="tgl">
-									<option value="">Tanggal</option>
-									<?php
-									for ($tgl=01; $tgl<=31; $tgl++)
-									{
-									echo "<option value=$tgl> $tgl </option>";
-									}
-									?>
-								</select> /
-									<select name="bln" id="bln">
-									<option value="">Bulan</option>
-									<option value="1">Januari</option>
-									<option value="2">Februari</option>
-									<option value="3">Maret</option>
-									<option value="4">April</option>
-									<option value="5">Mei</option>
-									<option value="6">Juni</option>
-									<option value="7">Juli</option>
-									<option value="8">Agustus</option>
-									<option value="9">September</option>
-									<option value="10">Oktober</option>
-									<option value="11">Nopember</option>
-									<option value="12">Desember</option>
-								</select> /
-										<select name="thn" id="thn">
-									<option value="">Tahun</option>
-									<?php
-									$tahun=Date('Y');
-									for ($thn=1970; $thn<=$tahun; $thn++)
-										{
-										echo "<option value=$thn> $thn</option>";
-										}
-									?>
-									</select></td></tr>  </tr>
+            <td>:&nbsp;<input type="text" name="tanggal" id="tanggal" size="30"></td>
   <tr><td><input type="submit" value="Simpan Jadwal"/> </td></tr></form></table>
   
  <?php

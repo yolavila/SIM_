@@ -1,12 +1,27 @@
-<?php 
-
-    include "f_connect.php";
+<?php 	
+	if(isset($_GET['no_applicant']) AND $_GET['no_applicant'] != "")
+	{
+		include "../f_connect.php";
+		$no_ap = $_GET['no_applicant'];
+		$sql=mysql_query("SELECT * from applicant where no_applicant='$no_ap'") or die (mysql_query());
+		//while ($data=mysql_fetch_array($sql)){
+		if($res = mysql_num_rows($sql) == 1)
+		{
+			//update status applicant
+			$query1=mysql_query("update applicant set status = 2 where no_applicant = '$no_ap'");
+			echo 1;
+			
+		}
+	}
+	else
+	{
+	include "f_connect.php";
 	$no_ap=$_POST['no_applicant'];
 	$sql=mysql_query("SELECT * from applicant where no_applicant='$no_ap'") or die (mysql_query());
 		$qryi=mysql_query("SELECT * from penjadwalan where no_applicant='$no_ap' and jadwal='0000-00-00'");
 		$cek_rows=mysql_num_rows($qryi);
 		if ($cek_rows==0){
-			echo "DATA YANG ANDA MASUKKAN KOSONG atau DATA SUDAH TERJADWAL";
+			echo "Data yang ada cari tidak ada atau data tersebut sudah terjadwalkan";
 		}else{
 					while ($data=mysql_fetch_array($sql)){
   
@@ -73,6 +88,7 @@
   <tr><td><input type="submit" value="Simpan Jadwal"/> </td></tr></form></table>
   
  <?php
+ }
  }
  }
  ?>
