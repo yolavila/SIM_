@@ -13,7 +13,7 @@ include "../f_connect.php"
             <label class="menu">Login Sebagai : </label>
             <select style="width: auto; height: 25px;"><option>Silahkan Pilih
                     <option onclick="document.location='?menu=login_admin'">Admin
-                    <option onclick="document.location='?menu=login_Manager'">Manager</select>
+                    <option onclick="document.location='?menu=login_manager'">Manager</select>
             </div><hr style="width: 400px;">
     <div id="login"><center>Login Admin</center>
     <form action="?menu=cek_login" method="post">

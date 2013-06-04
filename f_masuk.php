@@ -15,9 +15,10 @@
             </div>
             <div align="center">
             <label class="menu">Login Sebagai : </label>
-            <select style="width: auto; height: 25px;"><option>Silahkan Pilih
-                    <option onclick="document.location='?menu=login_admin'">Admin
-                    <option onclick="document.location='?menu=login_manager'">Manager
+            <select style="width: auto; height: 25px;" onChange="if(this.value) window.location.href=this.value"><option value="">Silahkan Pilih</option>
+                    <option value="?menu=login_admin">Admin</option>
+                    <option value="?menu=login_manager">Manager</option>
+            </select>
             </div><hr style="width: 400px;">
         </div>
         </td>
